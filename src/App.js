@@ -48,22 +48,26 @@ function App() {
           value={search}
           onChange={getSearch}
         />
-        <button className="search-button" type="submit" onClick="getSearch">
+        <button className="search-button" type="submit" onClick={getSearch}>
           Search
         </button>
       </form>
 
       <div className="recipe-div">
         {/* we use recipe =>() with parentheses instead of curly braces because we we want to return some html */}
-        {recipes.map(recipe => (
+        {recipes.map((item, i) => {
+          // due to recipe.recipe we convert it to item, with this constant
+          const recipe = item.recipe;
+          //we added the return we are using the constant above
+          return(
           <Recipe
-            key={`${recipe.recipe.count}-${recipe.recipe.label}`}
-            title={recipe.recipe.label}
-            calories={formatNumberWithCommas(recipe.recipe.calories)}
-            image={recipe.recipe.image}
-            ingredients={recipe.recipe.ingredients}
+            key={`${recipe}-${i}`}
+            title={recipe.label}
+            calories={formatNumberWithCommas(recipe.calories)}
+            image={recipe.image}
+            ingredients={recipe.ingredients}
           />
-        ))}
+          )})}
       </div>
     </div>
   );

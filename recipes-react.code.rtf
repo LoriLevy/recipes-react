@@ -1,0 +1,175 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red85\green142\blue40;\red0\green0\blue255;\red255\green255\blue255;
+\red0\green0\blue0;\red144\green1\blue18;\red19\green120\blue72;\red15\green112\blue1;\red107\green0\blue1;
+\red251\green0\blue7;\red63\green105\blue30;\red102\green177\blue50;\red9\green60\blue148;\red15\green112\blue1;
+\red255\green255\blue255;\red108\green18\blue48;}
+{\*\expandedcolortbl;;\csgenericrgb\c33333\c55686\c15686;\cssrgb\c0\c0\c100000;\cssrgb\c100000\c100000\c100000;
+\cssrgb\c0\c0\c0;\cssrgb\c63922\c8235\c8235;\cssrgb\c3529\c53333\c35294;\cssrgb\c0\c50196\c0;\cssrgb\c50196\c0\c0;
+\cssrgb\c100000\c0\c0;\csgenericrgb\c24706\c41176\c11765;\csgenericrgb\c40000\c69412\c19608;\cssrgb\c1569\c31765\c64706;\cssrgb\c0\c50196\c0;
+\cssrgb\c100000\c100000\c100000;\cssrgb\c50588\c12157\c24706;}
+\margl1440\margr1440\vieww23520\viewh10060\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 /* App.js */\cf0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f1 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 import\cf5 \strokec5 \'a0React,\'a0\{\'a0useState,\'a0useEffect\'a0\}\'a0\cf3 \strokec3 from\cf5 \strokec5 \'a0\cf6 \strokec6 "react"\cf5 \strokec5 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf5 \strokec5 \'a0\cf3 \strokec3 *\cf5 \strokec5 \'a0\cf3 \strokec3 as\cf5 \strokec5 \'a0constants\'a0\cf3 \strokec3 from\cf5 \strokec5 \'a0\cf6 \strokec6 "./constants"\cf5 \strokec5 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf5 \strokec5 \'a0\{\'a0formatNumberWithCommas\'a0\}\'a0\cf3 \strokec3 from\cf5 \strokec5 \'a0\cf6 \strokec6 "./utilities/format-number"\cf5 \strokec5 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf5 \strokec5 \'a0\cf6 \strokec6 "./App.css"\cf5 \strokec5 ;\cb1 \
+\cf3 \cb4 \strokec3 import\cf5 \strokec5 \'a0Recipe\'a0\cf3 \strokec3 from\cf5 \strokec5 \'a0\cf6 \strokec6 "./recipe/recipe"\cf5 \strokec5 ;\cb1 \
+\
+\cf3 \cb4 \strokec3 function\cf5 \strokec5 \'a0App()\'a0\{\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf5 \cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0[recipes,\'a0setRecipes]\'a0=\'a0useState([]);\cb1 \
+\cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0[search,\'a0setSearch]\'a0=\'a0useState(\cf6 \strokec6 ""\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0[query,\'a0setQuery]\'a0=\'a0useState(\cf6 \strokec6 "chicken"\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0[counter,\'a0setCounter]\'a0=\'a0useState(\cf7 \strokec7 0\cf5 \strokec5 );\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \cb4 \strokec8 ///*\'a0`https://api.edamam.com/search?q=chicken&app_id=$\{APP_ID\}&app_key=$\{API_KEY\}`\'a0*/\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf5 \cb4 \'a0\'a0\cf3 \strokec3 let\cf5 \strokec5 \'a0apiUrl\'a0=\'a0\cf6 \strokec6 `\cf3 \strokec3 $\{\cf5 \strokec5 constants.API_URL\cf3 \strokec3 \}\cf6 \strokec6 ?q=\cf3 \strokec3 $\{\cf5 \strokec5 query\cf3 \strokec3 \}\cf6 \strokec6 &app_id=\cf3 \strokec3 $\{\cf5 \strokec5 constants.APP_ID\cf3 \strokec3 \}\cf6 \strokec6 &app_key=\cf3 \strokec3 $\{\cf5 \strokec5 constants.API_KEY\cf3 \strokec3 \}\cf6 \strokec6 `\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0console.log(\cf6 \strokec6 "First:\'a0"\cf5 \strokec5 ,\'a0apiUrl);\cb1 \
+\cb4 \'a0\'a0apiUrl=\cf6 \strokec6 `https://api.edamam.com/search?q=chicken&app_id=9beb26c9&app_key=766e2d5f8849aebf8e49f2d3417621a5`\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0console.log(\cf6 \strokec6 "Now:\'a0\'a0\'a0"\cf5 \strokec5 ,\'a0apiUrl);\cb1 \
+\cb4 \'a0\'a0useEffect(()\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0\{\cb1 \
+\cb4 \'a0\'a0\'a0\'a0getRecipes();\cb1 \
+\cb4 \'a0\'a0\},\'a0[\cb1 \
+\cb4 \'a0\'a0\'a0\'a0query\cb1 \
+\cb4 \'a0\'a0]);\'a0\cf8 \strokec8 /*\'a0\'a0[query]\'a0to\'a0update\'a0only\'a0when\'a0setQuery\'a0has\'a0been\'a0run\'a0to\'a0update\'a0the\'a0state\'a0of\'a0query\'a0on\'a0form\'a0Submit*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0getRecipes\'a0=\'a0\cf3 \strokec3 async\cf5 \strokec5 \'a0()\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0\{\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0response\'a0=\'a0\cf3 \strokec3 await\cf5 \strokec5 \'a0fetch(apiUrl);\'a0\cf8 \strokec8 /*\'a0get\'a0the\'a0raw\'a0data\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0data\'a0=\'a0\cf3 \strokec3 await\cf5 \strokec5 \'a0response.json();\'a0\cf8 \strokec8 /*\'a0format\'a0the\'a0raw\'a0data\'a0into\'a0a\'a0JSON\'a0object\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0setRecipes(\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0data.hits\cb1 \
+\cb4 \'a0\'a0\'a0\'a0);\'a0\cf8 \strokec8 /*\'a0use\'a0setRecipes\'a0to\'a0update\'a0the\'a0state\'a0of\'a0the\'a0recipes\'a0object\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0console.log(data.hits);\cb1 \
+\cb4 \'a0\'a0\};\cb1 \
+\
+\cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0updateSearch\'a0=\'a0e\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0\{\cb1 \
+\cb4 \'a0\'a0\'a0\'a0setSearch(e.target.value);\cb1 \
+\cb4 \'a0\'a0\};\cb1 \
+\
+\cb4 \'a0\'a0\cf8 \strokec8 /*\'a0\'a0this\'a0method\'a0is\'a0for\'a0the\'a0onSubmit\'a0function\'a0of\'a0the\'a0form\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0getSearch\'a0=\'a0e\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0\{\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf8 \strokec8 /*\'a0Stop\'a0the\'a0page\'a0from\'a0refreshing\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0e.preventDefault();\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf8 \strokec8 /*\'a0update\'a0the\'a0state\'a0of\'a0the\'a0Query\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0setQuery(search);\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf8 \strokec8 /*\'a0now\'a0reset\'a0the\'a0textbox\'a0to\'a0empty\'a0*/\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0setSearch(\cf6 \strokec6 ""\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\};\cb1 \
+\
+\cb4 \'a0\'a0\cf3 \strokec3 return\cf5 \strokec5 \'a0(\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf9 \strokec9 <div\cf5 \strokec5 \'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf6 \strokec6 "App"\cf9 \strokec9 >\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <form\cf5 \strokec5 \'a0\cf10 \strokec10 onSubmit\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 getSearch\cf3 \strokec3 \}\cf5 \strokec5 \'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf6 \strokec6 "search-form"\cf9 \strokec9 >\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <input\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf6 \strokec6 "search-bar"\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 type\cf5 \strokec5 =\cf6 \strokec6 "text"\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 value\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 search\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 onChange\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 updateSearch\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 />\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <button\cf5 \strokec5 \'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf6 \strokec6 "search-button"\cf5 \strokec5 \'a0\cf10 \strokec10 type\cf5 \strokec5 =\cf6 \strokec6 "submit"\cf9 \strokec9 >\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0Search\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 </button>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 </form>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <h2\cf5 \strokec5 \'a0\cf10 \strokec10 onClick\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 ()\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0setCounter(counter\'a0+\'a0\cf7 \strokec7 1\cf5 \strokec5 )\cf3 \strokec3 \}\cf9 \strokec9 >\cf5 \strokec5 Counter\'a0isnow:\'a0\cf3 \strokec3 \{\cf5 \strokec5 counter\cf3 \strokec3 \}\cf9 \strokec9 </h2>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <div\cf5 \strokec5 \'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf6 \strokec6 "recipe-div"\cf9 \strokec9 >\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf3 \strokec3 \{\cf8 \strokec8 /*\'a0we\'a0use\'a0recipe\'a0=>()\'a0with\'a0parentheses\'a0inste4ad\'a0of\'a0curly\'a0braces\'a0because\'a0we\'a0we\'a0want\'a0to\'a0return\'a0some\'a0html\'a0*/\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf3 \strokec3 \{\cf5 \strokec5 recipes.map(recipe\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0(\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <Recipe\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 key\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 recipe.recipe.label\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 title\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 recipe.recipe.label\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 calories\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 formatNumberWithCommas(recipe.recipe.calories)\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 image\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 recipe.recipe.image\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf10 \strokec10 ingredients\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 recipe.recipe.ingredients\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 />\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0))\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 </div>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\cf9 \strokec9 </div>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0);\cb1 \
+\cb4 \}\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf3 \cb4 \strokec3 export\cf5 \strokec5 \'a0\cf3 \strokec3 default\cf5 \strokec5 \'a0App\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf11 /* Recipe.js */\cf5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf3 \cb4 \strokec3 import\cf5 \strokec5 \'a0React\'a0\cf3 \strokec3 from\cf5 \strokec5 \'a0\cf6 \strokec6 "react"\cf5 \strokec5 ;\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \cb4 \strokec8 /*\'a0import\'a0and\'a0use\'a0the\'a0css\'a0module\'a0*/\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf3 \cb4 \strokec3 import\cf5 \strokec5 \'a0style\'a0\cf3 \strokec3 from\cf5 \strokec5 \'a0\cf6 \strokec6 "./recipe.module.css"\cf5 \strokec5 ;\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \cb4 \strokec8 /*\'a0rather\'a0than\'a0sending\'a0over\'a0the\'a0"props",\'a0we\'a0will\'a0use\'a0deconstruction\'a0by\'a0placing\'a0the\'a0specific\'a0state\'a0of\'a0each\'a0prop\'a0into\'a0a\'a0set\'a0of\'a0curly\'a0braces\'a0\'a0*/\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf3 \cb4 \strokec3 const\cf5 \strokec5 \'a0Recipe\'a0=\'a0(\{title,\'a0calories,\'a0image,\'a0ingredients\})\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0\{\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf5 \cb4 \'a0\'a0\'a0\'a0\cf3 \strokec3 return\cf5 \strokec5 \'a0(\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <div\cf5 \strokec5 \'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 style.recipe\cf3 \strokec3 \}\cf9 \strokec9 >\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <h1>\cf3 \strokec3 \{\cf5 \strokec5 title\cf3 \strokec3 \}\cf9 \strokec9 </h1>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <ul>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf3 \strokec3 \{\cf8 \strokec8 /*\'a0map\'a0the\'a0ingredients\'a0list\'a0*/\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf3 \strokec3 \{\cf5 \strokec5 ingredients.map(ingredient\'a0\cf3 \strokec3 =>\cf5 \strokec5 \'a0(\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <li>\cf3 \strokec3 \{\cf5 \strokec5 ingredient.text\cf3 \strokec3 \}\cf9 \strokec9 </li>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0))\cf3 \strokec3 \}\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 </ul>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <p>\cf5 \strokec5 Calories:\'a0\cf3 \strokec3 \{\cf5 \strokec5 calories\cf3 \strokec3 \}\cf9 \strokec9 </p>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 <img\cf5 \strokec5 \'a0\cf10 \strokec10 className\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 style.image\cf3 \strokec3 \}\cf5 \strokec5 \'a0\cf10 \strokec10 src\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 image\cf3 \strokec3 \}\cf5 \strokec5 \'a0\cf10 \strokec10 alt\cf5 \strokec5 =\cf3 \strokec3 \{\cf5 \strokec5 title\cf3 \strokec3 \}\cf5 \strokec5 \'a0\cf9 \strokec9 />\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\cf9 \strokec9 </div>\cf5 \cb1 \strokec5 \
+\cb4 \'a0\'a0\'a0\'a0);\cb1 \
+\cb4 \}\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf3 \cb4 \strokec3 export\cf5 \strokec5 \'a0\cf3 \strokec3 default\cf5 \strokec5 \'a0Recipe;\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf12 /* recipe.module.css */\cf5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \cb4 \strokec8 /*\'a0This\'a0is\'a0a\'a0recipe\'a0module.\'a0\cf5 \cb1 \strokec5 \
+\cf8 \cb4 \strokec8 It\'a0isolates\'a0CSS\'a0so\'a0that\'a0other\'a0modules\'a0are\'a0not\'a0affected\'a0when\'a0you\'a0want\'a0this\'a0CSS\'a0\cf5 \cb1 \strokec5 \
+\cf8 \cb4 \strokec8 to\'a0affect\'a0only\'a0the\'a0recipe.js\'a0file\'a0and\'a0no\'a0other\'a0modules\'a0*/\cf5 \cb1 \strokec5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb4 \strokec9 .recipe\cf5 \strokec5 \'a0\{\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf5 \cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 border-radius\cf5 \strokec5 :\'a0\cf7 \strokec7 5px\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 box-shadow\cf5 \strokec5 :\'a0\cf7 \strokec7 0px\cf5 \strokec5 \'a0\cf7 \strokec7 5px\cf5 \strokec5 \'a0\cf7 \strokec7 20px\cf5 \strokec5 \'a0rgb(\cf7 \strokec7 71\cf5 \strokec5 ,\cf7 \strokec7 71\cf5 \strokec5 ,\cf7 \strokec7 71\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 margin\cf5 \strokec5 :\'a0\cf7 \strokec7 20px\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 display\cf5 \strokec5 :\'a0\cf13 \strokec13 flex\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 flex-direction\cf5 \strokec5 :\'a0\cf13 \strokec13 column\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 justify-content\cf5 \strokec5 :\'a0\cf13 \strokec13 space-around\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 background\cf5 \strokec5 :\'a0\cf13 \strokec13 whitesmoke\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 align-items\cf5 \strokec5 :\'a0\cf13 \strokec13 center\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 min-width\cf5 \strokec5 :\'a0\cf7 \strokec7 45%\cf5 \strokec5 ;\cb1 \
+\cb4 \}\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf9 \cb4 \strokec9 .image\cf5 \strokec5 \'a0\{\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf5 \cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 border-radius\cf5 \strokec5 :\'a0\cf7 \strokec7 20%\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 width\cf5 \strokec5 :\'a0\cf7 \strokec7 200px\cf5 \strokec5 ;\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf10 \strokec10 height\cf5 \strokec5 :\'a0\cf7 \strokec7 200px\cf5 \strokec5 ;\cb1 \
+\cb4 \}\cb1 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf2 /* constants.index.js */\cf5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf3 \cb4 \strokec3 export\cf5 \strokec5 \'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0APP_ID\'a0=\'a0\cf6 \strokec6 "9beb26c9"\cf5 \strokec5 ;\cb1 \
+\cf3 \cb4 \strokec3 export\cf5 \strokec5 \'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0API_KEY=\'a0\cf6 \strokec6 "766e2d5f8849aebf8e49f2d3417621a5"\cf5 \cb1 \strokec5 \
+\cf3 \cb4 \strokec3 export\cf5 \strokec5 \'a0\cf3 \strokec3 const\cf5 \strokec5 \'a0API_URL\'a0=\'a0\cf6 \strokec6 "https://api.edaman.com/search"\cf5 \strokec5 ;\cb1 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \cb4 \strokec8 /*\'a0`https://api.edamam.com/search?q=chicken&app_id=$\{APP_ID\}&app_key=$\{API_KEY\}`\'a0*/\cf5 \cb1 \strokec5 \
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf14 \cb15 \outl0\strokewidth0 /*\'a0Utilities/format-number.js\'a0*/\cf5 \cb1 \outl0\strokewidth0 \strokec5 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \cb4 \strokec8 /*\'a0This\'a0is\'a0a\'a0Utility\'a0function\'a0to\'a0round\'a0numbers\'a0and\'a0format\'a0it\'a0with\'a0comma\'a0separators\'a0*/\cf5 \cb1 \strokec5 \
+\cf3 \cb4 \strokec3 export\cf5 \strokec5 \'a0\cf3 \strokec3 function\cf5 \strokec5 \'a0formatNumberWithCommas(x)\'a0\{\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf3 \strokec3 var\cf5 \strokec5 \'a0parts\'a0=\'a0x.toString().split(\cf6 \strokec6 "."\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\'a0\'a0parts[\cf7 \strokec7 0\cf5 \strokec5 ]\'a0=\'a0parts[\cf7 \strokec7 0\cf5 \strokec5 ].replace(\cf16 \strokec16 /\cf3 \strokec3 \\B\cf16 \strokec16 (?=(\\d\cf5 \strokec5 \{3\}\cf16 \strokec16 )\cf5 \strokec5 +\cf16 \strokec16 (?!\\d))/\cf3 \strokec3 g\cf5 \strokec5 ,\'a0\cf6 \strokec6 ","\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\'a0\'a0\cf3 \strokec3 return\cf5 \strokec5 \'a0parts.join(\cf6 \strokec6 "."\cf5 \strokec5 );\cb1 \
+\cb4 \'a0\'a0\}\cb1 \
+}
