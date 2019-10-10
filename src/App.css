@@ -3,6 +3,9 @@
   background-image: linear-gradient(to top, rgb(161, 140, 209) 0%, rgb(251, 194, 235) 100%);
   }
 
+  li{
+    max-width: 92%;
+  }
 .search-form {
   min-height: 10vh;
   display: flex;
@@ -11,9 +14,10 @@
 }
 
 .search-bar {
-  width: 40px;
-  border: none;
+  width: 40%;
+  border: 1px solid #dddddd;
   padding: 10px;
+  border-radius: 5px;
 }
 
 .search-button {
@@ -22,6 +26,8 @@
   padding: 10px 20px;
   color: white;
   margin-left: 8px;
+  font-weight: 800;
+  border-radius: 5px;
 }
 
 .search-button:hover {
@@ -31,8 +37,16 @@
   color: white;
 }
 
+h1 {
+margin: 20px auto 0px 30px;
+}
+
 .recipe-div {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; /* For responsive design dynamics */
+  
+}
+.recipe-div div{
+  width: 365px;
 }

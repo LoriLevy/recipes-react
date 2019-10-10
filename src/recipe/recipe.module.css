@@ -10,11 +10,12 @@ to affect only the recipe.js file and no other modules */
     justify-content: space-around;
     background: whitesmoke;
     align-items: center;
-    min-width: 45%;
+    min-width: 30%;
 }
 
 .image {
     border-radius: 20%;
     width: 200px;
     height: 200px;
+    padding-bottom: 20px;
 }
