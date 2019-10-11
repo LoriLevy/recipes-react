@@ -18,7 +18,7 @@ const Recipe = ({ title, calories, image, ingredients }) => {
       <ul>
         {/* map the ingredients list with a unique key */}
         {uniqueIngredients.map((ingredient, i) => {
-          console.log("i is: ", i);
+          // console.log("i is: ", i);
           return <li key={`ingredient+${i}`}>{ingredient}</li>;
         })}
       </ul>

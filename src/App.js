@@ -6,10 +6,9 @@ import Recipe from "./recipe/recipe";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("chicken");
-
-  let apiUrl = `https://api.edamam.com/search?q=${query}&app_id=${constants.APP_ID}&app_key=${constants.API_KEY}`;
+  const [search, setSearch] = useState("chicken");
+  
+  let apiUrl = `https://api.edamam.com/search?q=${search}&app_id=${constants.APP_ID}&app_key=${constants.API_KEY}`;
 
   const getRecipes = async () => {
     const response = await fetch(apiUrl); /* get the raw data */
@@ -22,36 +21,30 @@ function App() {
 
   useEffect(() => {
     getRecipes();
-  }, [setQuery]); /*  [query] to update only when setQuery has been run to update the state of query on form Submit*/
+  }, []); /*  update only when page loads */
 
-  const updateSearch = e => {
-    setSearch(e.target.value);
-  };
-
-  /*  this method is for the onSubmit function of the form */
+  /*  this method is for the submit button click */
   const getSearch = e => {
-    /* Stop the page from refreshing */
-    e.preventDefault();
-    /* update the state of the Query */
-    setQuery(search);
-    console.log("search is:", search);
-    /* now reset the textbox to empty */
-    setSearch("");
+    getRecipes();
   };
+
+  const updateTextboxForSearch = (e) => {
+    setSearch(e.target.value);
+  }
 
   return (
     <div className="App">
-      <form onSubmit={updateSearch} className="search-form">
+      <div className="search-form">
         <input
           className="search-bar"
           type="text"
           value={search}
-          onChange={getSearch}
+          onChange={updateTextboxForSearch}
         />
-        <button className="search-button" type="submit" onClick={getSearch}>
+        <button className="search-button" type="button" onClick={getSearch}>
           Search
         </button>
-      </form>
+      </div>
 
       <div className="recipe-div">
         {/* we use recipe =>() with parentheses instead of curly braces because we we want to return some html */}
